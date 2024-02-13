@@ -49,15 +49,6 @@ function generateRandomColor() {
   return color;
 }
 
-function resetSketchPad() {
-  const gridCells = document.querySelectorAll(".grid-cell");
-  for (let i = 0; i < gridCells.length; i++) {
-    let cell = gridCells[i];
-    cell.style.backgroundColor = "white";
-  }
-  createGrids(defaultRows, defaultColumns);
-}
-
 //Event Listeners
 
 //hover effect over the sketchpad
@@ -75,7 +66,7 @@ sketchPad.addEventListener(
 
 //reset the sketchpad
 resetButton.addEventListener("click", function () {
-  resetSketchPad();
+  location.reload();
 });
 
 //change grid size for the "Enter" key press on the input field
