@@ -3,32 +3,34 @@ const menu = document.querySelector(".menu");
 const gridContainer = document.querySelector(".gridContainer");
 const sketchPad = document.querySelector(".gridScreen");
 
+const gridSizeInput = document.createElement("input");
+gridSizeInput.setAttribute("type", "text");
+gridSizeInput.setAttribute("placeholder", "Set Grid Size(1-100)");
+gridSizeInput.className = "gridSizeInput";
+menu.appendChild(gridSizeInput);
+
 const resetButton = document.createElement("button");
 resetButton.textContent = "Reset Sketchpad";
 resetButton.className = "resetButton";
 menu.appendChild(resetButton);
 
-const gridSizeInput = document.createElement("input");
-gridSizeInput.setAttribute("type", "text");
-gridSizeInput.className = "gridSizeInput";
-gridSizeInput.textContent = "Set Grid Size to any value between 1 and 100.";
-menu.appendChild(gridSizeInput);
-
 //Functions
-let gridSize = gridSizeInput.value;
-function checkValidGridSize(gridSize) {
-  if (isNaN(gridSize)) {
+function checkValidGridSize(inputValue) {
+  let size = Number(inputValue);
+  if (size < 0 || size > 100 || isNaN(size)) {
     alert("Please enter a valid number between 1 and 100.");
+    gridSizeInput.value = "";
+    console.log("not working");
+  } else if (size > 0 && size <= 100) {
+    createGrids(size);
   }
 }
-const defaultRows = 16;
-const defaultColumns = 16;
 
-function createGrids(columns, rows) {
-  for (let i = 0; i < columns; i++) {
+function createGrids(size) {
+  for (let i = 0; i < size; i++) {
     let column = document.createElement("div");
     column.classList.add("grid-column");
-    for (let j = 0; j < rows; j++) {
+    for (let j = 0; j < size; j++) {
       let gridCell = document.createElement("div");
       gridCell.classList.add("grid-cell");
       column.appendChild(gridCell);
@@ -36,7 +38,14 @@ function createGrids(columns, rows) {
     sketchPad.appendChild(column);
   }
 }
-createGrids(defaultRows, defaultColumns);
+createGrids(16);
+
+function resetGrids() {
+  const removeColumns = document.getElementsByClassName("grid-column");
+  while (removeColumns.length > 0) {
+    removeColumns[0].remove(); // Remove the first column in each iteration
+  }
+}
 
 function generateRandomColor() {
   let letters = "0123456789ABCDEF";
@@ -72,8 +81,9 @@ resetButton.addEventListener("click", function () {
 //change grid size for the "Enter" key press on the input field
 gridSizeInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    checkValidGridSize(gridSize);
-    createGrids(gridSizeInput.value, gridSizeInput.value);
+    checkValidGridSize(gridSizeInput.value);
+    resetGrids();
+    createGrids(gridSizeInput.value);
   }
 });
 
@@ -86,4 +96,16 @@ Known Bugs
 > will add on default grid size to existing grids 
 
 - input field is ugly 
+
+Future features: 
+- option to take a snapshot and export as image 
+- Add a range slider to change grid size: 
+
+const gridSlider = document.createElement("input");
+gridSlider.className = "gridSlider";
+gridSlider.type = "range";
+gridSlider.setAttribute("min", "1");
+gridSlider.setAttribute("max", "100");
+gridSlider.setAttribute("value", "50");
+menu.appendChild(gridSlider);
 */
