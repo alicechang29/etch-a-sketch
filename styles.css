@@ -8,33 +8,77 @@ body {
   border: black;
   height: 100vh;
   width: 100%;
+  font-family: "Courier New", Courier, monospace;
 }
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin: 50px;
+  text-transform: uppercase;
+  font-size: 2em;
+  color: rgb(175, 15, 15);
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.resetButton,
+.gridSizeInput {
+  transition: all 0.5s ease;
+  color: #292f36;
+  border: 3px solid #292f36;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  font-size: 17px;
+  background-color: transparent;
+  padding: 10px;
+  outline: none;
+  border-radius: 4px;
+}
+.resetButton:hover {
+  color: #fcfafa;
+  background-color: #292f36;
+  cursor: pointer;
+}
+.gridSizeInput {
+  margin: 10px;
+}
+/* Sketch Pad */
+
 .container {
-  border: green;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
 }
 
 .gridContainer {
-  border: cyan;
-  border-style: solid;
   display: flex;
   justify-content: center;
-  width: 800px;
-  height: 800px;
-  padding-top: 50px;
+  align-items: center;
+  width: 700px;
+  height: 700px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .gridScreen {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   width: 600px;
   height: 600px;
+  border-color: black;
   border-style: solid;
-  border-color: red;
+  border-width: thin;
 }
 
 .gridScreen > div {
@@ -42,12 +86,33 @@ body {
   flex-direction: column;
   height: auto;
   flex: 1 0 auto;
-  border-style: solid;
-  border-color: cyan;
 }
 
 .gridScreen > div > * {
   flex: 1;
-  border-style: solid;
-  border-color: green;
+  border-style: dashed;
+  border-width: thin;
+  border-color: black;
+}
+
+/* Footer */
+a,
+a:visited {
+  text-decoration: none;
+  color: #fcfafa;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #292f36;
+  color: #fcfafa;
+  font-size: 20px;
+}
+.footer a:hover {
+  text-decoration: underline;
+  color: #292f36;
+  background-color: #fcfafa;
+  cursor: pointer;
 }
